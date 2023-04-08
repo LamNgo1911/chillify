@@ -43,7 +43,7 @@ const connectDB = require('./config/db');
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI);
-        app.listen(port, () => {
+        app.listen(port,'0.0.0.0', () => {
             console.log(`Server is running on port ${port}`);
         });
     } catch (err) {
