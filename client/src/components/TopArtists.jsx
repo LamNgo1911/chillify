@@ -1,5 +1,4 @@
 import React from 'react'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
