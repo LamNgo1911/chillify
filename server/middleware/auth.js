@@ -1,9 +1,9 @@
 // create an auth middleware
-
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('./async');
 const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/user');
+require('dotenv').config();
 
 // protect routes
 exports.protect = asyncHandler(async (req, res, next) => {
