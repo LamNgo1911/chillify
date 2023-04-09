@@ -19,6 +19,9 @@ const corsOptions ={
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 app.use(express.json());
+app.get('/', (req, res) => {
+    res.sendStatus(200)
+  })
 // user routes
 const userRoutes = require('./routes/auth');
 app.use('/api/v1/auth', userRoutes);
