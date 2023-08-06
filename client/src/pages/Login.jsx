@@ -59,7 +59,7 @@ function Login() {
       navigate("/");
     } catch (err) {
       if (!err?.response) {
-        setError("No Server response. Please try again later.");
+        setError("No server response. Please try again later.");
       } else if (err?.response?.status === 400) {
         setError("Invalid credentials");
       } else if (err?.response?.status === 401) {

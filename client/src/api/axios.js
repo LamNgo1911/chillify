@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://chillify.onrender.com/api/v1"
+  baseURL: "https://chillify-5lg9.onrender.com/api/v1",
 });
