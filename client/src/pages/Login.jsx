@@ -92,12 +92,12 @@ function Login() {
         dispatch(setAuth(true));
         dispatch(setUser(data?.user));
         dispatch(setLogin(true));
+        navigate("/");
       }
-
+      console.log("hi")
       setLoading(false);
       setEmail("");
       setPassword("");
-      navigate("/");
     } catch (err) {
       if (!err?.response) {
         setError("No Server response. Please try again later.");
