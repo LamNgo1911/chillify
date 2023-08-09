@@ -1,6 +1,5 @@
 
 import React, { useRef, useEffect } from 'react'
-import axios from '../../api/axios';
 
 function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate, onLoadedData, repeat}) {
   const ref = useRef(null)
