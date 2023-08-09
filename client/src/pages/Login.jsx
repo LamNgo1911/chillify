@@ -88,6 +88,7 @@ function Login() {
         }
       );
       if (data) {
+        console.log(data, "hello")
         dispatch(setAuth(true));
         dispatch(setUser(data?.user));
         dispatch(setLogin(true));
