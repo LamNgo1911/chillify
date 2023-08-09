@@ -30,7 +30,7 @@ function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate,
 
   return (
     <audio
-      src={activeSong?.songUrl ? `${axios} + /api/v1/chart/stream/` + activeSong?.songUrl : ''}
+      src={activeSong?.songUrl ? `${axios} + /chart/stream/` + activeSong?.songUrl : ''}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
