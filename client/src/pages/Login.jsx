@@ -53,7 +53,7 @@ function Login() {
         dispatch(setAuth(true));
         dispatch(setLogin(true));
       }
-
+      console.log("hi")
       setLoading(false);
       setEmail("");
       setPassword("");
