@@ -1,7 +1,7 @@
 
 # Chillify - A streaming music platform
 
-Chillify is a music streaming platform that specializes in calm and soothing music, offering users a relaxing listening experience to help them unwind and destress.
+Chillify is a music streaming platform specializing in calm and soothing music, offering users a relaxing listening experience to help them unwind and destress.
 
 
 
@@ -19,7 +19,7 @@ Chillify is a music streaming platform that specializes in calm and soothing mus
 - React
 - Redux 
 - TailwindCSS
-- Marterial UI
+- Material UI
 
 **Server:** 
 - Node
@@ -35,11 +35,11 @@ Install my-project with npm
 
 
 ```
-1. Create new MongDB cluster
-2. Create shared cluster
-3. Choose "Connect" on newly created cluster
+1. Create a new MongoDB cluster
+2. Create a shared cluster
+3. Choose "Connect" on the newly created cluster
 4. Choose Node.js and version 4.1 or later
-Copy the connection string and replace "username" and "password" with credentials of the cluster
+Copy the connection string and replace "username" and "password" with the credentials of the cluster
 ```
 
 Clone project from GitHub
@@ -54,7 +54,7 @@ cd client
 npm install
 ```
 
-Create .env file based on the .env.example file
+Create a .env file based on the .env.example file
 
 ```
 # .env
@@ -68,17 +68,17 @@ JWT_EXPIRE = 30d
 
 ## Run locally
 
-Server side
+Server-side
 
 ```
     Open app.js >> corsOptions >> change origin to your localhost
     cd server
     npm start
 ```
-Client side
+Client-side
 
 ```
-    Open src >> api >> axios >> change baseURL to localhost server side with /api/v1 at the end. For example:  http://localhost:5000/api/v1
+    Open src >> api >> axios >> change baseURL to localhost server side with /api/v1 at the end. For example  http://localhost:5000/api/v1
     cd client
     npm start
 ```
