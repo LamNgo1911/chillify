@@ -10,7 +10,25 @@ Chillify is a music streaming platform specializing in calm and soothing music, 
 
 ## Preview
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Login page
+
+<img width="960" alt="login-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/97ead6d7-091a-4c4a-9fb3-a47d87b938c6">
+
+Sign-up page
+
+<img width="959" alt="sign-up-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/fdfcebcc-0629-4966-a977-70968873aa32">
+
+Forget-password page
+
+<img width="960" alt="password-recovery-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/c00bca16-08b5-41ee-a7a2-a378b4f9a1be">
+
+Home page
+
+<img width="960" alt="home-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/b9095414-6764-4451-9eb6-d6fb670d7659">
+
+
+
+
 
 
 ## Tech Stack
