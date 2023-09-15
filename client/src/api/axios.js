@@ -10,5 +10,7 @@ if(process.env.NODE_ENV === "production"){
 }
 
 export default axios.create({
-  baseURL: url,
+  baseURL: "http://localhost:5000/api/v1",
 });
+
+export {url}

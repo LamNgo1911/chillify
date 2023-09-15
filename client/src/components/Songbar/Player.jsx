@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from 'react'
-import axios from "../../api/axios"
+import {url} from "../../api/axios"
+console.log(url, "hello")
 
 function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate, onLoadedData, repeat}) {
   const ref = useRef(null)
@@ -30,7 +31,7 @@ function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate,
 
   return (
     <audio
-    src={activeSong?.songUrl ? `${axios}/chart/stream/${activeSong.songUrl}` : ''}
+    src={activeSong?.songUrl ? `${url}/chart/stream/${activeSong.songUrl}` : ''}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
