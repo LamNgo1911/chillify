@@ -80,7 +80,7 @@ function Songbar() {
               min="0"
               max={duration}
               value={appTime}
-              onInput={event => setSeekTime(event.target.value)}
+              onChange={event => setSeekTime(event.target.value)}
               appTime={appTime}
             />
             <Player 
