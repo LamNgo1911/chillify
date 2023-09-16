@@ -76,13 +76,16 @@ function Songbar() {
               handlePrevSong={() =>handlePrevSong()}
               handleShuffleSong={() =>handleShuffleSong()}
             />
-            <SeekBar 
-              min="0"
-              max={duration}
-              value={appTime}
-              onChange={event => setSeekTime(event.target.value)}
-              appTime={appTime}
+            <SeekBar
+            min={0}
+            max={duration}
+            value={seekTime}
+            onChange={(event) => {
+              setSeekTime(event.target.value);
+              // You may also want to seek your audio player here
+            }}
             />
+
             <Player 
               activeSong={activeSong}
               volume={volume}

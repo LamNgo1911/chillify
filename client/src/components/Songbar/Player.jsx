@@ -15,19 +15,18 @@ function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate,
       ref.current.pause();
     }
   }
-
   useEffect(() => {
-    ref.current.volume = volume;
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
   }, [volume]);
-  // updates audio element only on seekTime change (and not on each rerender):
+  
   useEffect(() => {
-   if(ref.current){
-    ref.current.currentTime = seekTime;
-   }
-    
-    console.log('seekTime', seekTime);
-    console.log('ref.current.currentTime', ref.current.currentTime);
+    if (ref.current) {
+      ref.current.currentTime = seekTime;
+    }
   }, [seekTime]);
+  
 
   return (
     <audio
