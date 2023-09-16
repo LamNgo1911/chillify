@@ -1,7 +1,6 @@
 
 import React, { useRef, useEffect } from 'react'
 import {url} from "../../api/axios"
-console.log(url, "hello")
 
 function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate, onLoadedData, repeat}) {
   const ref = useRef(null)
@@ -27,7 +26,7 @@ function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate,
     }
   }, [seekTime]);
   
-
+ 
   return (
     <audio
       src={activeSong?.songUrl ? `${url}/chart/stream/${activeSong.songUrl}` : ''}
@@ -37,7 +36,6 @@ function Player({activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate,
       onTimeUpdate={onTimeUpdate}
       onLoadedData={onLoadedData}
     />
-   
   )
 }
 

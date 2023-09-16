@@ -50,7 +50,6 @@ function Songbar() {
     if(shuffle) dispatch(shuffleSong())
   }
 
-
   return (
   
       <div 
@@ -79,7 +78,7 @@ function Songbar() {
             <SeekBar
             min={0}
             max={duration}
-            value={seekTime}
+            appTime={appTime}
             onChange={(event) => {
               setSeekTime(event.target.value);
               // You may also want to seek your audio player here
