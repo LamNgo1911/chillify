@@ -26,6 +26,44 @@ Home page
 
 <img width="960" alt="home-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/b9095414-6764-4451-9eb6-d6fb670d7659">
 
+Artist page
+
+![artist-page](https://github.com/LamNgo1911/chillify/assets/121915847/359a6b13-d4e5-46f6-a7f4-cba284f799bf)
+
+Song lyrics page
+
+![song-lyrics-page](https://github.com/LamNgo1911/chillify/assets/121915847/ca3ef759-2f7a-4a17-8f5d-6f345fa0bbae)
+
+Search page
+
+![search-page](https://github.com/LamNgo1911/chillify/assets/121915847/7fd94473-d4d2-4c51-81fc-5c654b64f336)
+
+Genre page
+
+![genre-page](https://github.com/LamNgo1911/chillify/assets/121915847/a961b4f4-23a4-4183-a493-35e747d3c385)
+
+Recent play page
+
+![recent-play-page](https://github.com/LamNgo1911/chillify/assets/121915847/b85b3db9-8b33-4ea6-a97d-940a2fd01712)
+
+Favorite page
+
+![favorite-page](https://github.com/LamNgo1911/chillify/assets/121915847/a78d584e-315b-4711-a2cb-6e7333073f73)
+
+Playlist page
+
+![playlist-page](https://github.com/LamNgo1911/chillify/assets/121915847/6c245808-02dc-44ae-9a66-dc4a2e3c930c)
+
+Music player
+
+![player](https://github.com/LamNgo1911/chillify/assets/121915847/b0985f13-a5bf-45e4-9dfc-59076e13c82e)
+
+
+
+
+
+
+
 
 
 
@@ -89,14 +127,12 @@ JWT_EXPIRE = 30d
 Server-side
 
 ```
-    Open app.js >> corsOptions >> change origin to your localhost
     cd server
     npm start
 ```
 Client-side
 
 ```
-    Open src >> api >> axios >> change baseURL to localhost server side with /api/v1 at the end. For example  http://localhost:5000/api/v1
     cd client
     npm start
 ```
