@@ -11,7 +11,7 @@ const streamSongUrl = asyncHandler(async (req, res, next) => {
     const bucket = new mongoose.mongo.GridFSBucket(conn.db, {
         chunkSizeBytes: 1024,
         bucketName: 'songs'
-      });
+    });
     
     const downloadStream = bucket.openDownloadStreamByName(filename);
   
@@ -19,12 +19,38 @@ const streamSongUrl = asyncHandler(async (req, res, next) => {
     res.set('Accept-Ranges', 'bytes');
     res.set('Content-Type', 'audio/mpeg');
     
-    // streaming to user
-    downloadStream.pipe(res);
-    if(!downloadStream){
-        return next(new ErrorResponse(`Song not found with id of ${req.params.id}`, 404));
+    // Get the total length of the file
+    const fileInfo = await bucket.find({ filename }).toArray();
+    if (fileInfo.length === 0) {
+        return next(new ErrorResponse(`Song not found with filename ${filename}`, 404));
+    }
+    const totalLength = fileInfo[0].length;
+    
+    // Parse the Range header if it exists
+    const rangeHeader = req.headers.range;
+    if (rangeHeader) {
+        const parts = rangeHeader.replace(/bytes=/, '').split('-');
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : totalLength - 1;
+        
+        // Set the response headers for the byte range
+        res.status(206);
+        res.set('Content-Range', `bytes ${start}-${end}/${totalLength}`);
+        res.set('Content-Length', end - start + 1);
+        
+        // Stream the requested byte range
+        downloadStream
+            .pipe(res, { start, end })
+            .on('error', (error) => {
+                next(error);
+            });
+    } else {
+        // If no Range header, stream the entire file
+        res.set('Content-Length', totalLength);
+        downloadStream.pipe(res);
     }
 });
+
 
 // all and genre songs
 const getAllSongs = asyncHandler(async (req, res, next) => {
