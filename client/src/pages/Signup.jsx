@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import axios from "../api/axios";
-const SIGNUP_URL = "/auth/signup";
 
 function Signup() {
   const navigate = useNavigate();
@@ -132,13 +131,11 @@ function Signup() {
       isPasswordValid &&
       isRepeatPasswordValid
     ) {
-      console.log("success");
-      setIsFormValid(true);
       try {
-        const response = await axios.post(
-          SIGNUP_URL,
+        const {data} = await axios.post(
+          "/auth/register",
           JSON.stringify({
-            username: user,
+            name: user,
             email: email,
             password: password,
             repeatPassword: repeatPassword,
@@ -149,9 +146,12 @@ function Signup() {
           }
         );
 
-        console.log(response);
+        if(data){
+          setIsFormValid(true);
+          console.log(data)
+        }
       } catch (error) {
-        if (error.response) {
+        if (!error?.response) {
           setError("No server response");
         } else if (error.response.status === 409) {
           setError("Username or email already exists");
@@ -305,7 +305,7 @@ function Signup() {
             {error && (
               <div
                 ref={errorRef}
-                className="flex flex-row gap-2 text-red-500 text-sm items-center justify-end"
+                className="flex flex-row gap-2 text-red-500 text-sm items-center justify-center"
                 aria-live="assertive"
               >
                 <AiFillExclamationCircle />

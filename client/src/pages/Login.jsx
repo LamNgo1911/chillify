@@ -64,6 +64,7 @@ function Login() {
       } else if (err?.response?.status === 400) {
         setError("Invalid credentials");
       } else if (err?.response?.status === 401) {
+        console.log(error)
         setError("Unauthorized");
       } else {
         setError("Something went wrong. Please try again later.");
@@ -98,16 +99,17 @@ function Login() {
       setEmail("");
       setPassword("");
       navigate("/");
-    } catch (err) {
-      if (!err?.response) {
+    } catch (error) {
+      if (!error?.response) {
         setError("No Server response. Please try again later.");
-      } else if (err?.response?.status === 400) {
+      } else if (error?.response?.status === 400) {
         setError("Invalid credentials");
-      } else if (err?.response?.status === 401) {
+      } else if (error?.response?.status === 401) {
         setError("Unauthorized");
       } else {
         setError("Something went wrong. Please try again later.");
       }
+    
       errorRef?.current?.focus();
       setLoading(false);
     }

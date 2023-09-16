@@ -10,18 +10,19 @@ const sendTokenResponse = require("../utils/sendTokenResponse");
 // @route   POST /api/v1/auth/register
 // @access  Public
 userController.register = async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, repeatPassword } = req.body;
+
   // check email existing
-  const existingEmail = User.findOne({ email });
+  const existingEmail = await User.findOne({ email });
   if (existingEmail) {
-    return next(new ErrorResponse("Email already exists", 404));
+    return next(new ErrorResponse("Email already exists", 409));
   }
+
   // Create user
   const user = await User.create({
     name,
     email,
-    password,
-    role,
+    password
   });
 
   sendTokenResponse(user, 200, res);

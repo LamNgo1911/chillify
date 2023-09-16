@@ -19,7 +19,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 import CloseIcon from '@mui/icons-material/Close';
 import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsCreated, setPlaylists } from '../redux/features/playerSlice';
 import { setAuth, setUser } from '../redux/features/auth';
@@ -39,6 +39,7 @@ const NavigationLink = ({icon, name, url, setOpenMobile}) =>{
 
 const NavLinks = ({setOpenMobile}) =>{
   const {playlists} = useSelector(state => state.player)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [points, setPoints] = useState({x: 0, y: 0})
 
@@ -73,6 +74,7 @@ const NavLinks = ({setOpenMobile}) =>{
   const handleLogout = () => {
     dispatch(setAuth(false))
     dispatch(setUser({}))
+    navigate("/login")
   }
   return (
     <div className='flex flex-col py-4'>
@@ -148,7 +150,7 @@ const NavLinks = ({setOpenMobile}) =>{
           <div className={`flex flex-row gap-3 hover:text-textColorLight sm:text-base text-sm font-medium
             hover:scale-x-105 ease-in duration-150 cursor-pointer`} 
             >
-                <NavLink to="/login" className="flex flex-row items-center gap-2"  onClick={handleLogout}>
+                <NavLink className="flex flex-row items-center gap-2"  onClick={handleLogout}>
                   < LogoutIcon /> Log Out
                 </NavLink>
             </div>
