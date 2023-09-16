@@ -10,6 +10,10 @@ Chillify is a music streaming platform specializing in calm and soothing music, 
 
 ## Preview
 
+### Live website
+https://bespoke-frangollo-b3a1d3.netlify.app
+
+### Photos
 Login page
 
 <img width="960" alt="login-page" src="https://github.com/LamNgo1911/chillify/assets/121915847/97ead6d7-091a-4c4a-9fb3-a47d87b938c6">
