@@ -9,11 +9,16 @@ import {
   removeRecentSongs,
    } from '../redux/features/playerSlice';
 
-function PlayAndPause({song, data, i, activeSong, isPlaying, songId}) {
+function PlayAndPause({song, data, i, activeSong, isPlaying, songId, onPlayClick }) {
   const dispatch = useDispatch()
 
   const handlePauseClick = () => {
     dispatch(setIsPlaying(false));
+
+    // Call the prop callback when play icon is clicked for testing
+    if (onPlayClick) {
+      onPlayClick();
+    }
   };
 
   const handlePlayClick = () => {
@@ -22,6 +27,11 @@ function PlayAndPause({song, data, i, activeSong, isPlaying, songId}) {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(setIsPlaying(true));
     dispatch(removeRecentSongs())
+
+    // Call the prop callback when play icon is clicked for testing
+    if (onPlayClick) {
+      onPlayClick();
+    }
     
   };
 
@@ -33,13 +43,16 @@ function PlayAndPause({song, data, i, activeSong, isPlaying, songId}) {
         className='cursor-pointer bg-bgPlayerColorLight 
         rounded-lg hover:scale-105 ease-in duration-150'
         onClick={() => handlePauseClick()}
+        data-testid="pause-icon"
+       
         />
         :
         <PlayArrowIcon 
         style={{fontSize:32}}
         className='cursor-pointer bg-bgPlayerColorLight 
         rounded-lg hover:scale-105 ease-in duration-150'
-        onClick={() => handlePlayClick()}
+        onClick={() => handlePlayClick()} 
+        data-testid="play-icon"
         />
         }
     </>
