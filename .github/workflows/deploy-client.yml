@@ -1,0 +1,39 @@
+name: Deploy Client to S3
+
+on:
+  push:
+    branches:
+      - main  # Trigger on changes to the main branch.
+
+jobs:
+  deploy-client:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Node.js for the frontend
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16  # Use your frontend's Node.js version
+
+    # Step 3: Install dependencies and build the frontend
+    - name: Install and Build Client
+      working-directory: ./client
+      run: |
+        npm install
+        npm run build
+
+    # Step 4: Deploy the built frontend to S3
+    - name: Deploy to S3
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Upload to S3
+      run: aws s3 sync ./client/build s3://chillify-frontend --acl public-read --delete
