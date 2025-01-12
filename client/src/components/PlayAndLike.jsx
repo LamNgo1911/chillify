@@ -65,12 +65,14 @@ function PlayAndLike({song, data, i, activeSong, isPlaying, isInPlaylist, songId
             style={{fontSize:35}} 
             className='cursor-pointer text-bgColorLighter absolute md:left-4 left-1 invisible group-hover:visible'
             onClick={handlePauseClick} 
+            ata-testid="pause-icon-playAndLike"
           />
           :
           <PlayArrowIcon 
             style={{fontSize:35}} 
             className='cursor-pointer text-bgColorLighter absolute md:left-4 left-1 invisible group-hover:visible' 
             onClick={handlePlayClick}
+            data-testid="play-icon-playAndLike"
           />
         }
         {/* close button */}

@@ -9,16 +9,11 @@ import {
   removeRecentSongs,
    } from '../redux/features/playerSlice';
 
-function PlayAndPause({song, data, i, activeSong, isPlaying, songId, onPlayClick }) {
+function PlayAndPause({song, data, i, activeSong, isPlaying, songId }) {
   const dispatch = useDispatch()
 
   const handlePauseClick = () => {
     dispatch(setIsPlaying(false));
-
-    // Call the prop callback when play icon is clicked for testing
-    if (onPlayClick) {
-      onPlayClick();
-    }
   };
 
   const handlePlayClick = () => {
@@ -27,11 +22,6 @@ function PlayAndPause({song, data, i, activeSong, isPlaying, songId, onPlayClick
     dispatch(setActiveSong({ song, data, i }));
     dispatch(setIsPlaying(true));
     dispatch(removeRecentSongs())
-
-    // Call the prop callback when play icon is clicked for testing
-    if (onPlayClick) {
-      onPlayClick();
-    }
     
   };
 
