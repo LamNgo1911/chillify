@@ -11,7 +11,7 @@ const morgan = require("morgan");
 const allowedOrigins = [
   "https://bespoke-frangollo-b3a1d3.netlify.app",
   "http://localhost:3000",
-  "https://d2ck4ivhb1ljuy.cloudfront.net/",
+  "https://d2ck4ivhb1ljuy.cloudfront.net",
 ];
 
 const corsOptions = {
