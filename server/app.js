@@ -2,36 +2,21 @@ require("dotenv").config();
 // async errors
 require("express-async-errors");
 const express = require("express");
+const serverless = require("serverless-http"); // Import serverless-http
 const app = express();
-const port = process.env.PORT || 5000;
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const morgan = require("morgan");
-// middleware
-// const corsOptions = {
-//   // origin: "https://bespoke-frangollo-b3a1d3.netlify.app" ,
-//   origin:  "http://localhost:3000",
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200,
-// };
-// app.use(function (req, res, next) {
-//   res.header(
-//     "Access-Control-Allow-Origin",
-//     corsOptions.origin
-//   );
-//   res.header("Access-Control-Allow-Credentials", true);
-//   next();
-// });
 
+// Define CORS options
 const allowedOrigins = [
   "https://bespoke-frangollo-b3a1d3.netlify.app",
-  "http://localhost:3000", // Change the port if your localhost runs on a different port
+  "http://localhost:3000",
   "https://d2ck4ivhb1ljuy.cloudfront.net/",
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // Check if the origin is in the allowedOrigins array or if it's undefined (for localhost)
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
@@ -41,42 +26,49 @@ const corsOptions = {
   credentials: true, // Enable CORS credentials
 };
 
+// Middleware
 app.use(mongoSanitize());
 app.use(morgan("tiny"));
-app.use(cors(corsOptions)); // Use this after the variable declaration
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Routes
 app.get("/", (req, res) => {
-  res.status.json("it works");
+  res.status(200).json({ message: "It works!" });
 });
-// user routes
+
+// User routes
 const userRoutes = require("./routes/auth");
 app.use("/api/v1/auth", userRoutes);
-// songs routes
+
+// Songs routes
 const songsRoutes = require("./routes/songs");
 app.use("/api/v1/chart", songsRoutes);
-// albums routes
+
+// Albums routes
 const albumsRoutes = require("./routes/albums");
 app.use("/api/v1/chart", albumsRoutes);
-// artists routes
+
+// Artists routes
 const artistsRoutes = require("./routes/artists");
 app.use("/api/v1/chart", artistsRoutes);
 
-// error handler middleware and not found middleware
+// Error-handling middleware
 const notFound = require("./middleware/not-found");
 app.use(notFound);
 const errorHandler = require("./middleware/error");
 app.use(errorHandler);
 
-// connect to db
+// Connect to MongoDB
 const connectDB = require("./config/db");
-const start = async () => {
+(async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
+    console.log("Connected to MongoDB successfully");
   } catch (err) {
-    console.log(err);
+    console.error("Failed to connect to MongoDB", err);
   }
-};
-start();
+})();
+
+// Export the app wrapped with serverless-http
+module.exports.handler = serverless(app);

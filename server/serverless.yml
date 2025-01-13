@@ -1,0 +1,26 @@
+service: nodejs-backend
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  environment:
+    MONGO_URI: ${env:MONGO_URI} # Add other environment variables if needed.
+
+functions:
+  app:
+    handler: app.handler
+    events:
+      - httpApi:
+          path: /
+          method: any
+      - httpApi:
+          path: /{proxy+}
+          method: any
+
+plugins:
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    path: .env # Load environment variables from your .env file
