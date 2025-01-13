@@ -93,6 +93,10 @@ Music player
 - Mongoose
 - Jwt
 - Multer
+  
+**Hosting:** 
+- AWS s3
+- AWS Lambda
 
 
 ## Installation
