@@ -2,7 +2,6 @@ require("dotenv").config();
 // async errors
 require("express-async-errors");
 const express = require("express");
-const serverless = require("serverless-http"); // Import serverless-http
 const app = express();
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -70,5 +69,15 @@ const connectDB = require("./config/db");
   }
 })();
 
-// Export the app wrapped with serverless-http
-module.exports.handler = serverless(app);
+// Check if the environment is serverless or traditional
+if (process.env.SERVERLESS === "true") {
+  // Export for serverless environment (e.g., AWS Lambda)
+  const serverless = require("serverless-http");
+  module.exports.handler = serverless(app);
+} else {
+  // For traditional environments, listen on the dynamic port
+  const port = process.env.PORT || 3000; // Default to port 3000 if not set by the environment
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
