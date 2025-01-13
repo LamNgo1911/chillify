@@ -14,6 +14,9 @@ Chillify is a music streaming platform specializing in calm and soothing music, 
 https://d2ck4ivhb1ljuy.cloudfront.net/  
 (Please be patient, it may take a bit longer to load data since I use a free version. Thank you for understanding.😇)
 
+### Backend API
+https://oinvb9t9nh.execute-api.us-east-1.amazonaws.com/
+
 ### Video
 https://drive.google.com/file/d/1bhlli36JrZg9Zk9S5hZ5JrUXpNiN-x9P/view?usp=sharing
 
