@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
-const morgan = require("morgan")
+const morgan = require("morgan");
 // middleware
 // const corsOptions = {
 //   // origin: "https://bespoke-frangollo-b3a1d3.netlify.app" ,
@@ -26,6 +26,7 @@ const morgan = require("morgan")
 const allowedOrigins = [
   "https://bespoke-frangollo-b3a1d3.netlify.app",
   "http://localhost:3000", // Change the port if your localhost runs on a different port
+  "https://d2ck4ivhb1ljuy.cloudfront.net/",
 ];
 
 const corsOptions = {
@@ -45,7 +46,7 @@ app.use(morgan("tiny"));
 app.use(cors(corsOptions)); // Use this after the variable declaration
 app.use(express.json());
 app.get("/", (req, res) => {
-  res.status.json("it works")
+  res.status.json("it works");
 });
 // user routes
 const userRoutes = require("./routes/auth");
