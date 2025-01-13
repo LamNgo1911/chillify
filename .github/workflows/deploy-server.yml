@@ -25,10 +25,11 @@ jobs:
         working-directory: ./server
         run: npm install --legacy-peer-deps
 
-      # Step 4: Deploy using Serverless Framework
-      - name: Install Serverless Framework
-        run: npm install -g serverless
+      # Step 4: Install Serverless Framework V3 (no authentication required)
+      - name: Install Serverless Framework V3
+        run: npm install -g serverless@3
 
+      # Step 5: Deploy to AWS Lambda using Serverless Framework
       - name: Deploy to AWS Lambda
         working-directory: ./server
         run: |
