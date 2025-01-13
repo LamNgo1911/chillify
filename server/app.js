@@ -74,15 +74,5 @@ const connectDB = require("./config/db");
   }
 })();
 
-// Check if the environment is serverless or traditional
-if (process.env.SERVERLESS === "true") {
-  // Export for serverless environment (e.g., AWS Lambda)
-  const serverless = require("serverless-http");
-  module.exports.handler = serverless(app);
-} else {
-  // For traditional environments, listen on the dynamic port
-  const port = process.env.PORT || 3000; // Default to port 3000 if not set by the environment
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
-}
+const serverless = require("serverless-http");
+module.exports.handler = serverless(app);
