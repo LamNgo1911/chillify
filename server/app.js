@@ -16,19 +16,24 @@ const allowedOrigins = [
 
 const corsOptions = {
   origin: (origin, callback) => {
+    // Allow requests from the allowed origins
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow specific methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
   credentials: true, // Enable CORS credentials
+  preflightContinue: false, // Ensures preflight requests are handled by Express
+  optionsSuccessStatus: 204, // For legacy browser support (like IE11)
 };
 
 // Middleware
 app.use(mongoSanitize());
 app.use(morgan("tiny"));
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // Apply CORS middleware
 app.use(express.json());
 
 // Routes
