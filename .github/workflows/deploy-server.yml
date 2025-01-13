@@ -23,7 +23,7 @@ jobs:
       # Step 3: Install dependencies
       - name: Install Server Dependencies
         working-directory: ./server
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # Step 4: Deploy using Serverless Framework
       - name: Install Serverless Framework
